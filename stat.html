@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Analisis Dampak</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:Segoe UI,Arial;background:#f4f7fb;margin:0;padding:40px;color:#24324a}
+.container{max-width:1100px;margin:auto}
+.section-title{text-align:center;margin-bottom:30px}
+.card{background:#fff;border-radius:18px;padding:25px;box-shadow:0 10px 35px rgba(0,0,0,.06)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.chart-box{height:300px}
+
+/* TABLE */
+.impact-table-card{margin-top:25px}
+.impact-table{width:100%;border-collapse:collapse;margin-top:15px;font-size:14px}
+.impact-table thead th{background:#f3f6fb;padding:14px;text-align:left}
+.impact-table tbody td{padding:14px;border-bottom:1px solid #edf1f7}
+.impact-table tbody tr:hover{background:#f7faff}
+.badge{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600}
+.high{background:#ffe3e3;color:#d64545}
+.medium{background:#fff3cd;color:#b78103}
+.low{background:#e3f7ec;color:#1f9d55}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="section-title">
+<h2>Analisis Dampak</h2>
+<p>Visualisasi jumlah bangunan dan luas sawah terdampak pembangunan tol</p>
+</div>
+
+<div class="grid">
+<div class="card chart-box"><canvas id="pieBangunan"></canvas></div>
+<div class="card chart-box"><canvas id="pieSawah"></canvas></div>
+</div>
+
+<div class="card" style="margin-top:20px"><canvas id="barDesa"></canvas></div>
+
+<div class="card impact-table-card">
+<h4>Detail Dampak per Desa</h4>
+<table class="impact-table">
+<thead>
+<tr><th>Desa</th><th>Bangunan</th><th>Sawah (Ha)</th><th>Status</th></tr>
+</thead>
+<tbody>
+<tr><td>Desa A</td><td>120</td><td>12.4</td><td><span class="badge high">Tinggi</span></td></tr>
+<tr><td>Desa B</td><td>90</td><td>9.2</td><td><span class="badge medium">Sedang</span></td></tr>
+<tr><td>Desa C</td><td>65</td><td>7.1</td><td><span class="badge medium">Sedang</span></td></tr>
+<tr><td>Desa D</td><td>40</td><td>5.6</td><td><span class="badge low">Rendah</span></td></tr>
+<tr><td>Desa E</td><td>25</td><td>3.3</td><td><span class="badge low">Rendah</span></td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+<script>
+// PIE BANGUNAN
+new Chart(document.getElementById('pieBangunan'),{
+ type:'doughnut',
+ data:{labels:['Terdampak','Tidak'],datasets:[{data:[340,860],backgroundColor:['#3563e9','#cfd8ff']}]},
+ options:{plugins:{legend:{position:'bottom'}}}
+});
+
+// PIE SAWAH
+new Chart(document.getElementById('pieSawah'),{
+ type:'doughnut',
+ data:{labels:['Terdampak','Aman'],datasets:[{data:[37.6,120],backgroundColor:['#27ae60','#cfe8d8']}]},
+ options:{plugins:{legend:{position:'bottom'}}}
+});
+
+// BAR DESA
+new Chart(document.getElementById('barDesa'),{
+ type:'bar',
+ data:{labels:['Desa A','Desa B','Desa C','Desa D','Desa E'],datasets:[{label:'Bangunan Terdampak',data:[120,90,65,40,25],backgroundColor:'#3563e9'}]},
+ options:{scales:{y:{beginAtZero:true}}}
+});
+</script>
+
+</body>
+</html>

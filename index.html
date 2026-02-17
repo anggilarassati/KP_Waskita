@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Kerja Praktik - PT Waskita Karya</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+   <!--Chart-->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- =======================================================
+  * Template Name: Orbit
+  * Template URL: https://bootstrapmade.com/orbit-bootstrap-template/
+  * Updated: Jan 13 2026 with Bootstrap v5.3.8
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+<!-- TARUH CSS DI SINI -->
+  <style>
+    .method-flow {
+  background: linear-gradient(180deg, #f8fafc, #eef2f7);
+  padding: 15px 15px;
+  border-radius: 16px;
+}
+
+.flow-title {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* Container */
+.vertical-timeline {
+  position: relative;
+  max-width: 780px;
+  margin: auto;
+}
+
+/* Garis tengah */
+.vertical-timeline::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, #3b82f6, #1e40af);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Item */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 5px 20px;
+  margin-bottom: 10px; /* lebih rapat */
+}
+
+/* Posisi */
+.timeline-item.left { left: 0; text-align: right; }
+.timeline-item.right { left: 50%; text-align: left; }
+
+/* Nomor */
+.timeline-number {
+  position: absolute;
+  top: 8px;
+  width: 26px;
+  height: 26px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 26px;
+  text-align: center;
+  z-index: 2;
+  box-shadow: 0 0 0 4px #eef2f7;
+}
+
+.timeline-item.left .timeline-number { right: -13px; }
+.timeline-item.right .timeline-number { left: -13px; }
+
+/* Card */
+.timeline-content {
+  background: #ffffff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  transition: all 0.25s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.15);
+}
+
+/* Text */
+.timeline-content h6 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.timeline-content p {
+  font-size: 12.5px;
+  margin: 0;
+  color: #555;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+
+  .vertical-timeline::before {
+    left: 18px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    text-align: left !important;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0;
+  }
+
+  .timeline-number {
+    left: 4px !important;
+    right: auto !important;
+  }
+}
+  </style>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+
+      <a href="#hero" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="assets/img/logo.png" alt="">
+        <img src="assets/img/logougm.png" alt="">
+        <h1 class="sitename">Kerja Praktik</h1><span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">Profile</a></li>
+          <li><a href="#methodology">Methodology</a></li>
+          <li><a href="#services">Maps</a></li>
+          <li><a href="#analytics">Analysis Results</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row align-items-center gy-5">
+
+          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+            <div class="hero-content">
+              <div class="hero-tag" data-aos="fade-up" data-aos-delay="250">
+                <span class="tag-dot"></span>
+                <span class="tag-text">SISTEM INFORMASI GEOSPASIAL</span>
+              </div>
+
+              <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="300">Sistem Informasi Pembebasan Lahan
+                <br> Trase Jalan Tol Krian - Candi, Jawa Timur Bebasis WebGIS
+              </h1>
+
+              <p class="hero-text" data-aos="fade-up" data-aos-delay="350">Website ini menyajikan hasil Kerja Praktik UGM Tahun 2026 mengenai identifikasi area terdampak
+  pembangunan jalan tol Krian - Candi. Analisis dilakukan menggunakan data foto udaras
+  dan Sistem Informasi Geografis (SIG) untuk memetakan pemukiman serta lahan sawah
+  yang terkena dampak pembangunan.</p>
+
+              <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+                <a href="#methodology" class="cta-button">
+                  <span>Selengkapnya</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+            <div class="stats-grid">
+              <div class="stat-card stat-card-primary" data-aos="zoom-in" data-aos-delay="350">
+                <div class="stat-icon-wrap">
+                  <i class="bi bi-rocket-takeoff"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-value">18.55 KM+</span>
+                  <span class="stat-title">Panjang Trase Tol</span>
+                </div>
+              </div>
+
+              <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="stat-icon-wrap">
+                  <i class="bi bi-heart"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-value">20</span>
+                  <span class="stat-title">Desa Terdampak</span>
+                </div>
+              </div>
+
+              <div class="stat-card" data-aos="zoom-in" data-aos-delay="450">
+                <div class="stat-icon-wrap">
+                  <i class="bi bi-lightbulb"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-value">10+</span>
+                  <span class="stat-title">Spatial Analysis</span>
+                </div>
+              </div>
+
+              <div class="stat-card stat-card-accent" data-aos="zoom-in" data-aos-delay="500">
+                <div class="stat-icon-wrap">
+                  <i class="bi bi-briefcase"></i>
+                </div>
+                <div class="stat-info">
+                  <span class="stat-value">Dashboard</span>
+                  <span class="stat-title">Interactive Map</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-5 align-items-center">
+
+          <div class="col-xl-6 aos-init aos-animate" data-aos="fade-right" data-aos-delay="200">
+            <div class="about-images-wrapper">
+              <div class="image-main">
+                <img src="assets/img/about.jpeg" alt="Business meeting" class="img-fluid">
+              </div>
+
+              <div class="experience-badge">
+                <span class="years purecounter" data-purecounter-start="0" data-purecounter-end="65" data-purecounter-duration="1">65</span>
+                <span class="text">Years of<br>Excellence</span>
+              </div>
+              <div class="shape-pattern"></div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 aos-init aos-animate" data-aos="fade-left" data-aos-delay="300">
+            <div class="about-content">
+              <div class="section-subtitle">Profil Perusahaan</div>
+              <h2>PT Waskita Karya (Persero) Tbk</h2>
+              <p class="lead-text">
+                 PT Waskita Karya (Persero) Tbk merupakan Badan Usaha Milik Negara (BUMN)
+  yang bergerak di bidang konstruksi dan infrastruktur di Indonesia.
+  Perusahaan berperan penting dalam pembangunan jalan tol, jembatan,
+  bendungan, dan berbagai proyek strategis nasional.
+              </p>
+              <p class="mb-4 description">
+                Dalam proyek pembangunan Jalan Tol Krian – Candi Jawa Timur, Waskita Karya berperan
+  sebagai pelaksana konstruksi. Proyek ini bertujuan meningkatkan konektivitas
+  wilayah serta mendukung pertumbuhan ekonomi kawasan. Website ini dibuat
+  sebagai bagian dari kegiatan Kerja Praktik UGM Tahun 2026 untuk menganalisis dampak
+  pembangunan terhadap pemukiman dan lahan sawah menggunakan Sistem
+  Informasi Geografis (SIG).
+              </p>
+
+              <div class="features-grid">
+                <div class="feature-card">
+                  <i class="bi bi-check-circle-fill"></i>
+                  <span>Analisis Spasial Efisien</span>
+                </div>
+                <div class="feature-card">
+                  <i class="bi bi-check-circle-fill"></i>
+                  <span>Data Terverifikasi</span>
+                </div>
+                <div class="feature-card">
+                  <i class="bi bi-check-circle-fill"></i>
+                  <span>Pendekatan Akademik SIG</span>
+                </div>
+                <div class="feature-card">
+                  <i class="bi bi-check-circle-fill"></i>
+                  <span>Akses WebGIS Interaktif</span>
+                </div>
+              </div>
+              <div class="action-buttons">
+                <a href="https://www.waskita.co.id/" class="btn btn-primary-custom">
+                  Discover More <i class="bi bi-arrow-right"></i>
+                </a>
+                <div class="contact-info">
+                  <div class="icon-box">
+                    <i class="bi bi-telephone-fill"></i>
+                  </div>
+                  <div class="text">
+                    <span>Call Us Today</span>
+                    <a href="tel:0218508510">(021) 850-8510</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+     <!-- Why Us Section -->
+    <section id="methodology" class="why-us section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Methodology</h2>
+        <p>Analisis menggunakan pendekatan spasial berbasis foto udara resolusi tinggi dan SIG untuk mengidentifikasi serta menghitung luas area terdampak secara akurat</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-5">
+          <div class="col-lg-5" data-aos="fade-right" data-aos-delay="200">
+            <div class="sidebar-content">
+              <div class="badge-wrapper">
+                <span class="section-badge"><i class="bi bi-stars"></i> Our Difference</span>
+              </div>
+              <h2>Spatial Analysis</h2>
+              <p class="description">Analisis dampak pembangunan Jalan Tol Candi–Krian dilakukan menggunakan pendekatan spasial berbasis foto udara resolusi tinggi dan Sistem Informasi Geografis (SIG). Metode ini digunakan untuk mengidentifikasi serta menghitung luas area permukiman dan lahan sawah yang terdampak secara akurat dan terukur.</p>
+<div class="stat-cards">
+
+  <!-- ORTOFOTO / DRONE / LIDAR -->
+  <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+    <div class="stat-icon-circle">
+      <i class="bi bi-airplane"></i>
+    </div>
+    <div class="stat-text">
+      Data Ortofoto Rencana Ruas Tol Krian - Candi menggunakan Drone DJI M300RTK dengan sensor LiDAR
+    </div>
+  </div>
+
+  <!-- BATAS ADMINISTRASI -->
+  <div class="stat-card" data-aos="zoom-in" data-aos-delay="350">
+    <div class="stat-icon-circle">
+      <i class="bi bi-map"></i>
+    </div>
+    <div class="stat-text">
+      Data Batas Administrasi Wilayah
+    </div>
+  </div>
+
+  <!-- PENGGUNAAN LAHAN -->
+  <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
+    <div class="stat-icon-circle">
+      <i class="bi bi-grid-1x2"></i>
+    </div>
+    <div class="stat-text">
+      Data penggunaan lahan hasil digitasi on screen
+    </div>
+  </div>
+
+  <!-- TRASE / CENTERLINE -->
+  <div class="stat-card" data-aos="zoom-in" data-aos-delay="450">
+    <div class="stat-icon-circle">
+      <i class="bi bi-bezier2"></i>
+    </div>
+    <div class="stat-text">
+      Data trase Tol (Centerline/ROW) Krian - Candi
+    </div>
+  </div>
+
+</div>
+
+              <div class="action-buttons">
+                <a href="#" class="btn-main">Get Started Today</a>
+                <a href="#services" class="btn-outline">Explore Interactive Maps</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
+            <div class="features-grid">
+              <div class="feature-box highlight" data-aos="fade-up" data-aos-delay="250">
+                <div class="feature-ribbon">Top Rated</div>
+                <div class="feature-icon">
+                  <i class="bi bi-rocket-takeoff-fill"></i>
+                </div>
+                
+              </div><!-- End Feature Box -->
+
+              <div class="feature-box" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon">
+                  <i class="bi bi-bar-chart-line-fill"></i>
+                </div>
+                <div class="feature-content">
+                  <h4>Buffer Analysis</h4>
+                  <p>Buffer 30 m ke kanan dan 30 m ke kiri dari centerline tol dibuat menggunakan analisis SIG untuk membentuk koridor ROW selebar maksimal 60 meter. Zona ini digunakan sebagai batas identifikasi dan perhitungan luas permukiman serta sawah yang terdampak pembangunan.</p>
+                </div>
+              </div><!-- End Feature Box -->
+
+              <div class="feature-box" data-aos="fade-up" data-aos-delay="350">
+                <div class="feature-icon">
+                  <i class="bi bi-award-fill"></i>
+                </div>
+                <div class="feature-content">
+                  <h4>Overlay Analysis</h4>
+                  <p>Overlay (Intersect/Clip) digunakan untuk menentukan area terdampak dengan menumpangtindihkan layer permukiman dan sawah terhadap trase tol atau Buffer ROW. Fungsi Intersect menghasilkan bagian yang benar-benar masuk koridor pembangunan, sedangkan Clip memotong objek sesuai batas proyek.</p>
+                </div>
+              </div><!-- End Feature Box -->
+            </div>
+<div class="method-flow">
+  <h5 class="flow-title">
+    <i class="bi bi-diagram-3-fill"></i> Research Methodology
+  </h5>
+
+  <div class="vertical-timeline">
+
+    <div class="timeline-item left">
+      <div class="timeline-number">1</div>
+      <div class="timeline-content">
+        <h6>Studi Literatur</h6>
+        <p>Kajian teori perubahan tutupan lahan, dampak pembangunan infrastruktur, dan metode analisis spasial.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-number">2</div>
+      <div class="timeline-content">
+        <h6>Pengumpulan Data</h6>
+        <p>Ortofoto resolusi tinggi, data trase jalan tol, dan batas administrasi terproyeksi.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-number">3</div>
+      <div class="timeline-content">
+        <h6>Digitasi Tutupan Lahan</h6>
+        <p>Interpretasi visual dan digitasi permukiman serta sawah berbasis ortofoto.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-number">4</div>
+      <div class="timeline-content">
+        <h6>Analisis Overlay Spasial</h6>
+        <p>Buffering trase jalan tol dan overlay untuk mengidentifikasi area terdampak.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-number">5</div>
+      <div class="timeline-content">
+        <h6>Perhitungan Luas Area Terdampak</h6>
+        <p>Perhitungan luas poligon hasil overlay untuk memperoleh total luas permukiman dan sawah terdampak serta distribusi spasialnya.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-number">6</div>
+      <div class="timeline-content">
+        <h6>Konversi Ortofoto (GDAL2Tiles)</h6>
+        <p>Konversi ortofoto menjadi format XYZ tiles agar kompatibel dan optimal ditampilkan pada Leaflet.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-number">7</div>
+      <div class="timeline-content">
+        <h6>Publikasi Layer (QGIS2Web)</h6>
+        <p>Ekspor layer digitasi dan hasil analisis menjadi webGIS interaktif berbasis Leaflet.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item right">
+      <div class="timeline-number">8</div>
+      <div class="timeline-content">
+        <h6>Kustomisasi Website</h6>
+        <p>Penyesuaian tampilan, layout, legenda, popup atribut, serta optimasi antarmuka pengguna.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item left">
+      <div class="timeline-number">9</div>
+      <div class="timeline-content">
+        <h6>Deployment & Hosting</h6>
+        <p>Upload repository ke GitHub dan deployment menggunakan Vercel untuk memperoleh URL publik WebGIS.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+            <div class="capabilities-section" data-aos="fade-up" data-aos-delay="450">
+              <h5 class="capabilities-heading">What We Bring to the Pages</h5>
+              <div class="capabilities-grid">
+                <div class="capability-card">
+                  <div class="capability-icon">
+                    <i class="bi bi-bullseye"></i>
+                  </div>
+                  <h6>Geometri Presisi</h6>
+                  <p>Menghitung luas setiap poligon terdampak dengan perhitungan geometri SIG.</p>
+                </div>
+                <div class="capability-card">
+                  <div class="capability-icon">
+                    <i class="bi bi-code-slash"></i>
+                  </div>
+                  <h6>Visualisasi Transparan</h6>
+                  <p>Hasil disajikan melalui peta interaktif dengan informasi atribut lengkap.</p>
+                </div>
+                <div class="capability-card">
+                  <div class="capability-icon">
+                    <i class="bi bi-arrow-repeat"></i>
+                  </div>
+                  <h6>Distribusi Spasial</h6>
+                  <p>Menyediakan data distribusi dampak di sepanjang trase tol secara mendetail.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Why Us Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Peta Pembebasan Lahan Trase Jalan Tol Krian - Candi</h2>
+        <p>Visualisasi ini merepresentasikan distribusi spasial wilayah terdampak pembangunan Jalan Tol Krian–Candi berdasarkan analisis geospasial terhadap batas administrasi, koridor trase, serta penggunaan lahan eksisting guna mendukung evaluasi kebutuhan pembebasan lahan secara terukur dan sistematis.</p>
+      </div><!-- End Section Title -->
+
+      <!-- MAP SECTION -->
+      <div class="container" data-aos="fade-up" data-aos-delay="200">
+        <div class="map-wrapper">
+          <iframe 
+            src="Layer_Peta/Peta.html"  
+            width="100%" 
+            height="700" 
+            style="border: 1px;; border-radius:16px; box-shadow:1 10px 30px rgba(0,0,0,0.1);"
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+      
+  <section id="analytics" class="analytics section"> 
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Analysis Result</h2>
+      <p>Visualisasi Analysis Result menunjukkan dampak pembangunan jalan tol terhadap bangunan dan lahan sawah pada wilayah studi.</p>
+    </div>
+
+    <div class="chart-wrapper">
+
+  <!-- BARIS 1 -->
+  <div class="chart-row">
+    <div class="chart-card pie">
+      <h3>Jumlah Bangunan Terdampak</h3>
+      <canvas id="bangunanChart"></canvas>
+    </div>
+
+    <div class="chart-card bar">
+      <h3>Bangunan Terdampak per Desa</h3>
+      <canvas id="desaChart"></canvas>
+    </div>
+  </div>
+
+  <!-- BARIS 2 -->
+  <div class="chart-row">
+    <div class="chart-card pie">
+      <h3>Luas Lahan Pertanian Terdampak</h3>
+      <canvas id="sawahChart"></canvas>
+    </div>
+
+    <div class="chart-card bar">
+      <h3>Luas Lahan Pertanian Terdampak per Desa</h3>
+      <canvas id="sawahBarChart"></canvas>
+    </div>
+  </div>
+
+</div>
+
+</section>
+
+
+<script>
+// =============================
+// REGISTER PLUGINS
+// =============================
+const centerTextPlugin = {
+    id: 'centerText',
+    afterDraw(chart, args, options) {
+        if (chart.config.type !== 'doughnut') return;
+
+        const { ctx } = chart;
+        const meta = chart.getDatasetMeta(0);
+        if (!meta?.data?.length) return;
+
+        const dataset = chart.data.datasets[0];
+        const total = dataset.data.reduce((a, b) => a + b, 0);
+        if (!total) return;
+
+        const value = dataset.data[0];
+        const percent = ((value / total) * 100).toFixed(1) + "%";
+
+        const x = meta.data[0].x;
+        const y = meta.data[0].y;
+
+        ctx.save();
+        ctx.font = "bold 28px Segoe UI";
+        ctx.fillStyle = dataset.backgroundColor[0];
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(options?.customText || percent, x, y);
+        ctx.restore();
+    }
+};
+
+const barLabelPlugin = {
+    id: 'barLabel',
+    afterDatasetsDraw(chart) {
+        if (chart.config.type !== 'bar') return;
+
+        const { ctx } = chart;
+        ctx.save();
+        ctx.font = "bold 12px Segoe UI";
+        ctx.fillStyle = "#333";
+        ctx.textAlign = "center";
+
+        chart.data.datasets.forEach((dataset, i) => {
+            const meta = chart.getDatasetMeta(i);
+            meta.data.forEach((bar, index) => {
+                ctx.fillText(dataset.data[index], bar.x, bar.y - 8);
+            });
+        });
+
+        ctx.restore();
+    }
+};
+
+Chart.register(centerTextPlugin, barLabelPlugin);
+
+
+// =============================
+// DOUGHNUT BANGUNAN
+// =============================
+new Chart(document.getElementById('bangunanChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Terdampak', 'Tidak Terdampak'],
+        datasets: [{
+            data: [657, 5967],
+            backgroundColor: ['#2d6cdf', '#dfe6ff'],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 0.9,
+        cutout: '75%',
+        plugins: {
+            centerText: {customText: '657 Bangunan'},
+            legend: { position: 'bottom' }
+        }
+    }
+});
+
+
+// =============================
+// DOUGHNUT SAWAH
+// =============================
+new Chart(document.getElementById('sawahChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Terdampak (Ha)', 'Aman (Ha)'],
+        datasets: [{
+            data: [170.294, 773.327],
+            backgroundColor: ['#27ae60', '#dff5e8'],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 0.9,
+        cutout: '75%',
+        plugins: {
+            centerText: { customText: '170.294 Ha' },
+            legend: { position: 'bottom' }
+        }
+    }
+});
+
+
+// =============================
+// BAR BANGUNAN PER DESA
+// =============================
+new Chart(document.getElementById('desaChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Balongbendo','Prambon','Tulangan','Wonoayu'],
+        datasets: [{
+            data: [173, 6, 251, 227],
+            backgroundColor: '#2d6cdf',
+            borderRadius: 6,
+            barThickness: 40
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 2.5,
+        scales: {
+            y: { beginAtZero: true, grid: { display: false } },
+            x: { grid: { display: false } }
+        },
+        plugins: { legend: { display: false } }
+    }
+});
+
+
+// =============================
+// BAR SAWAH PER DESA
+// =============================
+new Chart(document.getElementById('sawahBarChart'), {
+    type: 'bar',
+    data: {
+        labels: ['Balongbendo','Candi','Prambon','Tulangan','Wonoayu'],
+        datasets: [{
+            data: [17.022, 14.684, 18.218, 99.691, 20.679],
+            backgroundColor: '#27ae60',
+            borderRadius: 6,
+            barThickness: 40
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 2.4,
+        scales: {
+            y: { beginAtZero: true, grid: { display: false } },
+            x: { grid: { display: false } }
+        },
+        plugins: { legend: { display: false } }
+    }
+});
+</script>
+
+
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-4">
+
+          <!-- Service Card 1 -->
+          <div class="col-lg-4 col-md-2" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-card">
+              <div class="icon-wrapper">
+                <i class="bi bi-house"></i>
+              </div>
+              <h3>Bangunan Terdampak</h3>
+              <p>Berdasarkan hasil analisis spasial, tercatat 657 bangunan terdampak oleh pembangunan Jalan Tol Krian–Candi. Distribusi bangunan terdampak menunjukkan variasi antar desa, dengan dampak terbesar berada di Tulangan (251 bangunan) dan Wonokayu (227 bangunan). Desa Balongbendo juga mengalami dampak yang cukup signifikan dengan 173 bangunan, sementara Prambon memiliki jumlah bangunan terdampak paling kecil yaitu 6 bangunan. Pola ini mengindikasikan bahwa trase jalan tol lebih banyak melintasi kawasan permukiman padat, sehingga berpotensi menimbulkan kebutuhan pembebasan lahan dan relokasi hunian.</p>
+              <a href="service-details.html" class="service-link">
+              </a>
+            </div>
+          </div><!-- End Service Card -->
+
+          <!-- Service Card 2 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-card">
+              <div class="icon-wrapper">
+                <i class="bi bi-tree"></i>
+              </div>
+              <h3>Lahan Pertanian Terdampak</h3>
+              <p>Selain kawasan permukiman, pembangunan jalan tol juga berdampak terhadap lahan pertanian, khususnya persawahan. Total luas sawah terdampak mencapai 170,294 hektar. Dampak terbesar terjadi di Tulangan, dengan luas sekitar 100,69 ha, yang menunjukkan dominasi lintasan tol pada lahan pertanian produktif. Desa lain seperti Wonokayu (20,679 ha), Prambon (18,218 ha), Balongbendo (17,022 ha), dan Candi (14,684 ha) mengalami dampak yang relatif lebih kecil namun tetap perlu diperhatikan karena berpotensi memengaruhi aktivitas pertanian dan sistem irigasi.</p>
+              <a href="service-details.html" class="service-link">
+              </a>
+            </div>
+          </div><!-- End Service Card -->
+
+          <!-- Service Card 3 - Featured -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-card">
+              <div class="icon-wrapper">
+                <i class="bi bi-signpost-2"></i>
+              </div>
+              <h3>Interpretasi Umum</h3>
+              <p>Secara keseluruhan, hasil analisis menunjukkan bahwa dampak pembangunan Jalan Tol Krian–Candi bersifat tidak merata secara spasial, dengan konsentrasi dampak terbesar berada di Desa Tulangan baik dari sisi bangunan maupun lahan sawah. Temuan ini dapat digunakan sebagai dasar dalam perencanaan pembebasan lahan, penentuan prioritas kompensasi, serta evaluasi dampak sosial dan pertanian untuk mendukung pembangunan infrastruktur yang berkelanjutan.</p>
+              <a href="service-details.html" class="service-link">
+              </a>
+            </div>
+          </div><!-- End Service Card -->
+
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Team</h2>
+        <p>Tim Kerja Praktik Program Studi S1 Teknik Geodesi UGM Tahun 2026</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-5 justify-content-center">
+
+          <!-- Team Member 1 -->
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-card">
+              <div class="member-img">
+                <img src="assets/img/person/foto_nabilaa.jpeg" class="img-fluid" alt="Team Member">
+                <div class="social-overlay">
+                  <div class="social-links">
+                    <a href="https://wa.me/6285331542927"><i class="bi bi-whatsapp"></i></a>
+                    <a href="https://www.linkedin.com/in/nablilaarinurhasanah/"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.instagram.com/nabl.an/"><i class="bi bi-instagram"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="member-info">
+                <span class="member-badge">Mahasisiwa S1 Teknik Geodesi</span>
+                <h4>Nabila Ari Nur Hasanah</h4>
+                <p>NIM. 22/493187/TK/54013</p>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <!-- Team Member 2 -->
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-card">
+              <div class="member-img">
+                <img src="assets/img/person/foto_anggii.jpg" class="img-fluid" alt="Team Member">
+                <div class="social-overlay">
+                  <div class="social-links">
+                    <a href="https://wa.me/6283113502196"><i class="bi bi-whatsapp"></i></a>
+                    <a href="https://www.linkedin.com/in/anggilarassati/"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.instagram.com/anggilrsst/"><i class="bi bi-instagram"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="member-info">
+                <span class="member-badge">Mahasisiwa S1 Teknik Geodesi</span>
+                <h4>Anggi Larassati</h4>
+                <p>NIM. 22/493643/TK/54089</p>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+        </div>
+
+        <!-- Stats Row -->
+        <div class="team-stats" data-aos="fade-up" data-aos-delay="500">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="stats-wrapper">
+                <div class="stat-item">
+                  <span class="stat-number">2 Months</span>
+                  <span class="stat-label">Internship at PT Waskita Karya (Persero) Tbk.</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                  <span class="stat-number">2022</span>
+                  <span class="stat-label">Geodetic Engineering</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                  <span class="stat-number">8</span>
+                  <span class="stat-label">Semester Studi</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Team Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Hubungi kami untuk informasi proyek dan kerja sama</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-5 align-items-stretch">
+
+          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+            <div class="info-panel">
+              <div class="panel-header">
+                <span class="section-badge">
+                  <i class="bi bi-chat-dots-fill"></i>
+                  Get In Touch
+                </span>
+                <h3>Let’s Build the Future Together</h3>
+                <p>Kami menghadirkan solusi infrastruktur yang inovatif, profesional, dan berkelanjutan untuk mendukung keberhasilan setiap proyek Anda.</p>
+              </div>
+
+              <div class="contact-methods">
+                <div class="method-item">
+                  <div class="method-icon">
+                    <i class="bi bi-envelope-paper-fill"></i>
+                  </div>
+                  <div class="method-details">
+                    <span class="method-label">Email Us</span>
+                    <a href="mailto:waskita@waskita.co.id">waskita@waskita.co.id</a>
+                  </div>
+                </div>
+
+                <div class="method-item">
+                  <div class="method-icon">
+                    <i class="bi bi-headset"></i>
+                  </div>
+                  <div class="method-details">
+                    <span class="method-label">Call Us</span>
+                    <a href="tel:0218508510">(021) 850-8510</a>
+                    <a href="tel:0218508520">(021) 850-8520</a>
+                  </div>
+                </div>
+
+                <div class="method-item">
+                  <div class="method-icon">
+                    <i class="bi bi-pin-map-fill"></i>
+                  </div>
+                  <div class="method-details">
+                    <span class="method-label">Visit Us</span>
+                    <span>Gedung Waskita Heritage Jl. MT Haryono Kav. No 10, Cawang - Jakarta 13340</span>
+                  </div>
+                </div>
+              </div>
+
+              
+              <div class="social-connect">
+                <span>Follow Us</span>
+                <div class="social-icons">
+                  <a href="https://www.facebook.com/PTWASKITAKARYA/" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="https://x.com/waskita_karya/" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                  <a href="https://www.linkedin.com/company/waskitakarya/"><i class="bi bi-linkedin"></i></a>
+                  <a href="https://www.instagram.com/waskita_karya/" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- End Info Panel -->
+
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+  <div class="form-card">
+    
+    <div class="form-card-header">
+      <div class="header-icon">
+        <i class="bi bi-geo-alt-fill"></i>
+      </div>
+      <div class="header-text">
+        <h4>Kantor Pusat</h4>
+        <p>PT Waskita Karya (Persero) Tbk.</p>
+      </div>
+    </div>
+
+    <div class="map-container" style="border-radius:15px; overflow:hidden;">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.13806467297!2d106.87397419999999!3d-6.24552999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f30f9d47a913%3A0xd1a12a5203591f4b!2sPT%20Waskita%20Karya%20(Persero)%20Tbk!5e0!3m2!1sid!2sid!4v1771256306599!5m2!1sid!2sid" 
+        width="100%" 
+        height="600" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+
+  </div>
+</div>
+<!-- End Form Card -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer light-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-3 col-md-6 footer-info">
+          <a href="index.html" class="logo d-flex align-items-center mb-4">
+            <span class="sitename">Kerja Praktik UGM Tahun 2026</span>
+          </a>
+          <p>Nabila Ari Nur Hasanah</p>
+          <p>Anggi Larassati</p>
+          <p><strong>Divisi Produksi dan Operasional Ekselen</strong></p>
+          <p><strong>PT Waskita Karya (Persero) Tbk</strong></p>
+
+    
+        </div>
+
+        
+
+    <div class="container footer-bottom">
+      <div class="row gy-3">
+        <div class="col-md-6 order-2 order-md-1">
+          <div class="copyright">
+            <p>© <span>Copyright</span> <strong class="sitename">Kerja Praktik UGM Tahun 2026</strong>. All Rights Reserved.</p>
+          </div>
+          <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you've purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | <a href="https://bootstrapmade.com/tools/">DevTools</a>
+          </div>
+        </div>
+        <div class="col-md-6 order-1 order-md-2">
+          <div class="legal-links">
+            <a href="tos.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="privacy.html">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
