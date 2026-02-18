@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>WebGIS KP</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet.fullscreen@2.4.0/Control.FullScreen.css"/>
+<script src="https://unpkg.com/leaflet.fullscreen@2.4.0/Control.FullScreen.js"></script>
+
+
+<script src="layerPeta/data/PERMUKIMAN_ARR_0.js"></script>
+<script src="layerPeta/data/Permukiman_Terdampak_1.js"></script>
+<script src="layerPeta/data/SAWAH_ARR_2.js"></script>
+<script src="layerPeta/data/Sawah_Terdampak_3.js"></script>
+<script src="layerPeta/data/JALAN_ARR_4.js"></script>
+<script src="layerPeta/data/buffer_jalan_simpang_dissolve_5.js"></script>
+<script src="layerPeta/data/CL_Krian_Candi_6.js"></script>
+<script src="layerPeta/data/Kecamatan_Tol_LN_7.js"></script>
+<script src="layerPeta/data/Desa_Tol_LN_8.js"></script>
+
+
+<style>
+:root{--primary:#2f6df6;--card:#ffffff;--shadow:0 8px 24px rgba(0,0,0,.15)}
+html,body{margin:0;height:100%;font-family:Inter,Segoe UI,Arial}
+
+/* NAVBAR */
+.topbar{
+ position:fixed;top:0;left:0;right:0;height:70px;
+ background:#fff;display:flex;align-items:center;
+ padding:0 28px;z-index:1000;box-shadow:var(--shadow)
+}
+.topbar h1{font-size:20px;margin:0;font-weight:700;color:#1a2b49}
+
+#map{position:absolute;top:70px;bottom:0;width:100%}
+
+/* PANEL CONTROL */
+.leaflet-control-layers{
+ border:none!important;border-radius:14px!important;
+ box-shadow:var(--shadow)!important;padding:10px
+}
+
+/* WARNA AKTIF BIRU (bukan pink lagi) */
+input[type="checkbox"],
+input[type="radio"]{
+ accent-color: var(--primary);
+}
+
+.map-title{
+ background:var(--card);padding:12px 18px;border-radius:14px;
+ box-shadow:var(--shadow);font-weight:700;color:#1a2b49
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><h1>Peta Pembebasan Lahan Trase Jalan Tol Krian - Candi</h1></div>
+<div id="map"></div>
+
+<script>
+var map=L.map('map',{center:[-7.4408937,112.6174045],zoom:12, fullscreenControl: true, fullscreenControlOptions: {
+        position: 'topleft'
+    }});
+
+
+/* BASEMAPS */
+var osm=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19});
+
+var carto=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png');
+
+var satellite=L.tileLayer(
+'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+{maxZoom:20,attribution:'© ESRI'}
+);
+
+var white=L.tileLayer("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEX///+nxBvIAAAAH0lEQVQYGe3BAQ0AAADCIPunfg43YAAAAAAAAAAA5wIhAAAB9aK9BAAAAABJRU5ErkJggg==");
+
+/* ORTHO */
+var ortho=L.tileLayer('./{z}/{x}/{y}.png',{tms:true,opacity:.85});
+
+/* FUNCTION */
+function popupContent(props){
+ let h="";
+ for(const k in props){h+=`<b>${k}</b>: ${props[k]}<br>`}
+ return h
+}
+function createLayer(data,styleOpt){
+ return L.geoJSON(data,{
+   style:styleOpt,
+   onEachFeature:(f,l)=>{if(f.properties)l.bindPopup(popupContent(f.properties));}
+ })
+}
+
+/* ====== DATA QGIS2WEB ====== */
+
+//*--Permukiman--*//
+map.createPane('pane_permukiman');
+map.getPane('pane_permukiman').style.zIndex = 410;
+
+function stylePermukiman(){
+    return {
+        pane:'pane_permukiman',
+        stroke:false,
+        fill:true,
+        fillOpacity:0.7,
+        fillColor:'#ff7f00',
+        interactive:true
+    };
+}
+
+function highlightPermukiman(e){
+    var layer = e.target;
+    layer.setStyle({
+        stroke:true,
+        weight:1.5,
+        color:'#000000',
+        fillColor:'#ffa94d',
+        fillOpacity:1
+    });
+}
+
+function resetPermukiman(e){
+    permukiman.resetStyle(e.target);
+}
+
+function popPermukiman(feature,layer){
+
+    if(feature.properties){
+
+        var id = feature.properties.id ?? feature.properties.ID ?? "-";
+
+        layer.bindPopup(
+            "<b>Permukiman</b><hr>"+
+            "<b>ID:</b> "+id+"<br>"+
+            "<b>Desa:</b> "+feature.properties.WADMKD+"<br>"+
+            "<b>Kecamatan:</b> "+feature.properties.WADMKC+"<br>"+
+            "<b>Kab/Kota:</b> "+feature.properties.WADMKK
+        );
+    }
+
+    layer.on({
+        mouseover:highlightPermukiman,
+        mouseout:resetPermukiman
+    });
+}
+
+var permukiman = L.geoJSON(json_PERMUKIMAN_ARR_0,{
+    style:stylePermukiman,
+    onEachFeature:popPermukiman
+});
+
+//*--PermukimanTerdampak--*//
+map.createPane('pane_permukiman_terdampak');
+map.getPane('pane_permukiman_terdampak').style.zIndex = 430;
+
+function stylePermukimanTerdampak(){
+    return {
+        pane:'pane_permukiman_terdampak',
+        color:'#232323',
+        weight:1,
+        opacity:1,
+        fill:true,
+        fillOpacity:1,
+        fillColor:'#c43c39',
+        interactive:true
+    };
+}
+
+function highlightPermukimanTerdampak(e){
+    var layer = e.target;
+    layer.setStyle({
+        weight:2,
+        color:'#000000',
+        fillColor:'#ff6b6b',
+        fillOpacity:1
+    });
+}
+
+function resetPermukimanTerdampak(e){
+    permukiman_terdampak.resetStyle(e.target);
+}
+
+function popPermukimanTerdampak(feature,layer){
+
+    if(feature.properties){
+
+            var id = feature.properties.id ?? feature.properties.ID ?? "-";
+
+        layer.bindPopup(
+            "<b>Permukiman Terdampak</b><hr>"+
+            "<b>ID:</b> "+id+"<br>"+
+            "<b>Desa:</b> "+feature.properties.WADMKD+"<br>"+
+            "<b>Kecamatan:</b> "+feature.properties.WADMKC+"<br>"+
+            "<b>Kab/Kota:</b> "+feature.properties.WADMKK
+        );
+    }
+
+    layer.on({
+        mouseover:highlightPermukimanTerdampak,
+        mouseout:resetPermukimanTerdampak
+    });
+}
+
+var permukiman_terdampak = L.geoJSON(json_Permukiman_Terdampak_1,{
+    style:stylePermukimanTerdampak,
+    onEachFeature:popPermukimanTerdampak
+});
+
+//*--Sawah--*//
+map.createPane('pane_sawah');
+map.getPane('pane_sawah').style.zIndex = 420;
+
+function styleSawah(){
+    return {
+        pane:'pane_sawah',
+        color:'#4f8a4f',
+        weight:1,
+        opacity:1,
+        fill:true,
+        fillOpacity:1,
+        fillColor:'#7fbf7f',
+        interactive:true
+    };
+}
+
+function highlightSawah(e){
+    var layer = e.target;
+    layer.setStyle({
+        weight:2,
+        color:'#1b5e20',
+        fillColor:'#a5d6a7',
+        fillOpacity:1
+    });
+}
+
+function resetSawah(e){
+    sawah.resetStyle(e.target);
+}
+
+function popSawah(feature,layer){
+
+    if(feature.properties){
+
+        var luas =
+            feature.properties.Luas ??
+            feature.properties.luas ??
+            feature.properties.LUAS ??
+            feature.properties.Shape_Area ??
+            feature.properties.AREA ??
+            "-";
+
+        if(luas !== "-"){
+            luas = Number(luas).toLocaleString('id-ID',{maximumFractionDigits:0});
+        }
+
+        var id = feature.properties.id ?? feature.properties.ID ?? "-";
+
+        layer.bindPopup(
+            "<b>Sawah</b><hr>"+
+            "<b>ID:</b> "+id+"<br>"+
+            "<b>Luas:</b> "+luas+" m²<br><br>"+
+            "<b>Desa:</b> "+feature.properties.WADMKD+"<br>"+
+            "<b>Kecamatan:</b> "+feature.properties.WADMKC+"<br>"+
+            "<b>Kab/Kota:</b> "+feature.properties.WADMKK
+        );
+    }
+
+    layer.on({
+        mouseover:highlightSawah,
+        mouseout:resetSawah
+    });
+}
+
+
+var sawah = L.geoJSON(json_SAWAH_ARR_2,{
+    style:styleSawah,
+    onEachFeature:popSawah
+}).addTo(map);
+
+
+
+//*--Sawah Terdampak--*//
+map.createPane('pane_sawahTerdampak');
+map.getPane('pane_sawahTerdampak').style.zIndex = 430;
+
+function styleSawahTerdampak(){
+    return {
+        pane:'pane_sawahTerdampak',
+        color:'#232323',
+        weight:1,
+        opacity:1,
+        fill:true,
+        fillOpacity:1,
+        fillColor:'#85b66f',
+        interactive:true
+    };
+}
+
+function highlightSawahTerdampak(e){
+    var layer = e.target;
+    layer.setStyle({
+        weight:2,
+        color:'#000',
+        fillColor:'#a8d08d',
+        fillOpacity:1
+    });
+}
+
+function resetSawahTerdampak(e){
+    sawahTerdampak.resetStyle(e.target);
+}
+
+function popSawahTerdampak(feature,layer){
+
+    if(feature.properties){
+
+        var luas =
+            feature.properties.Luas_D ??
+            feature.properties.luas ??
+            feature.properties.LUAS ??
+            feature.properties.Shape_Area ??
+            feature.properties.AREA ??
+            feature.properties.Luas_m2 ??
+            "-";
+
+        if(luas !== "-"){
+            luas = Number(luas).toLocaleString('id-ID',{maximumFractionDigits:0});
+        }
+
+        var id = feature.properties.id ?? feature.properties.ID ?? "-";
+
+        layer.bindPopup(
+            "<b>Sawah Terdampak</b><hr>"+
+            "<b>ID:</b> "+id+"<br>"+
+            "<b>Luas:</b> "+luas+" m²<br><br>"+
+            "<b>Desa:</b> "+feature.properties.WADMKD+"<br>"+
+            "<b>Kecamatan:</b> "+feature.properties.WADMKC+"<br>"+
+            "<b>Kab/Kota:</b> "+feature.properties.WADMKK
+        );
+    }
+
+    layer.on({
+        mouseover:highlightSawahTerdampak,
+        mouseout:resetSawahTerdampak
+    });
+}
+
+
+var sawahTerdampak = L.geoJSON(json_Sawah_Terdampak_3,{
+    style:styleSawahTerdampak,
+    onEachFeature:popSawahTerdampak
+});
+
+
+//*--Buffer--*//
+var jalan = createLayer(json_JALAN_ARR_4,{
+    stroke: false, 
+    fill: true,
+    fillOpacity: 1,
+    fillColor: 'rgba(255,0,0,0.25098039215686274)',
+    interactive: false
+});
+
+//*--buffer--*//
+var buffer = createLayer(json_buffer_jalan_simpang_dissolve_5,{
+    stroke: false, 
+    fill: true,
+    fillOpacity: 1,
+    fillColor: 'rgba(255,0,0,0.25098039215686274)',
+    interactive: false
+});
+
+//*--Cl--*//
+map.createPane('pane_CL');
+map.getPane('pane_CL').style.zIndex = 650;
+
+function styleCL(feature){
+
+    switch(feature.properties.Name){
+
+        case 'Krian - Candi':
+            return {color:'#80ff07',weight:2};
+
+        case 'JC 1':
+        case 'JC 2':
+            return {color:'#80ff07',weight:0.7};
+
+        case 'IC Prambon Baru 02':
+        case 'IC Wonoayu Baru':
+        case 'usulan IC Tulangan 2':
+            return {color:'#ff0000',weight:0.7};
+
+        case 'on/off Krian 1':
+        case 'on/off Krian 2':
+            return {color:'#0000ff',weight:0.7};
+
+        case 'Jalur KA Commuter St Tulangan (Double-Double Track)':
+        case 'Jalur KA YOG - SUB (Double-Double Track)':
+            return {color:'#fd6fcf',weight:0.7};
+
+        case 'SUTT Krian 01':
+        case 'SUTT Krian 02':
+        case 'SUTT Wonoayu':
+            return {color:'#66ccff',weight:0.5};
+
+        default:
+            return {color:'#ff0000',weight:0.5};
+    }
+}
+
+function popCL(feature, layer){
+
+    let nama = feature.properties.Name || 
+               feature.properties.Name_2 || 
+               "Center Line";
+
+    layer.bindPopup(
+        "<div style='font-weight:600;font-size:14px'>" + nama + "</div>"
+    );
+}
+
+
+
+var cl = L.geoJSON(json_CL_Krian_Candi_6,{
+    pane:'pane_CL',
+    style:styleCL,
+    onEachFeature:popCL
+});
+
+/* =====================================================
+   GLOBAL HOVER + CLEAN CANVAS
+===================================================== */
+
+function highlightFeature(e){
+    var layer = e.target;
+
+    layer.setStyle({
+        weight:3,
+        color:'#00ffff'
+    });
+
+    if(!L.Browser.ie && !L.Browser.opera && !L.Browser.edge){
+        layer.bringToFront();
+    }
+}
+
+function resetHighlight(e){
+    var layer = e.target;
+
+    for (var i in layer._eventParents){
+        if(layer._eventParents[i].resetStyle){
+            layer._eventParents[i].resetStyle(layer);
+        }
+    }
+}
+
+/* =====================================================
+   PANE
+===================================================== */
+
+// desa
+map.createPane('pane_desa_back');  map.getPane('pane_desa_back').style.zIndex = 450;
+map.createPane('pane_desa_front'); map.getPane('pane_desa_front').style.zIndex = 451;
+
+// kecamatan
+map.createPane('pane_kecamatan_back');  map.getPane('pane_kecamatan_back').style.zIndex = 500;
+map.createPane('pane_kecamatan_front'); map.getPane('pane_kecamatan_front').style.zIndex = 501;
+
+
+/* =====================================================
+   STYLE
+===================================================== */
+
+function outlineBack(pane){
+    return {
+        pane:pane,
+        color:'#ffff00',
+        weight:4,
+        opacity:1,
+        fill:false,
+        interactive:false
+    };
+}
+
+function outlineFront(pane){
+    return {
+        pane:pane,
+        color:'#000000',
+        weight:2,
+        opacity:1,
+        fill:false,
+        interactive:true
+    };
+}
+
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+function popDesa(feature, layer){
+    if(feature.properties){
+        layer.bindPopup(
+            "<b>Desa " + (feature.properties.WADMKD || "-") + "</b><hr>"+
+            "<b>Kecamatan:</b> "+(feature.properties.WADMKC || "-")+"<br>"+
+            "<b>Kab/Kota:</b> "+(feature.properties.WADMKK || feature.properties.WADMPR || "-")
+        );
+    }
+    layer.on({mouseover:highlightFeature, mouseout:resetHighlight});
+}
+
+function popKecamatan(feature,layer){
+    if(feature.properties){
+        layer.bindPopup("<b>Kecamatan "+(feature.properties.WADMKC || "-")+"</b>");
+    }
+    layer.on({mouseover:highlightFeature, mouseout:resetHighlight});
+}
+
+
+/* =====================================================
+   GEOJSON
+===================================================== */
+
+// ===== DESA =====
+var desa_back = L.geoJSON(json_Desa_Tol_LN_8,{
+    style:()=>outlineBack('pane_desa_back')
+});
+
+var desa_front = L.geoJSON(json_Desa_Tol_LN_8,{
+    style:()=>outlineFront('pane_desa_front'),
+    onEachFeature:popDesa
+});
+
+var desa = L.layerGroup([desa_back, desa_front]);
+
+
+// ===== KECAMATAN =====
+var kec_back = L.geoJSON(json_Kecamatan_Tol_LN_7,{
+    style:()=>outlineBack('pane_kecamatan_back')
+});
+
+var kec_front = L.geoJSON(json_Kecamatan_Tol_LN_7,{
+    style:()=>outlineFront('pane_kecamatan_front'),
+    onEachFeature:popKecamatan
+});
+
+var kecamatan = L.layerGroup([kec_back, kec_front]);
+
+
+
+
+/* DEFAULT VIEW */
+satellite.addTo(map);
+
+desa.addTo(map);
+kecamatan.addTo(map);
+
+jalan.addTo(map);
+cl.addTo(map);
+buffer.addTo(map);
+permukiman.addTo(map);
+permukiman_terdampak.addTo(map);
+sawahTerdampak.addTo(map);
+sawah.addTo(map);
+
+
+
+
+setTimeout(()=>{
+    try{
+        var group=L.featureGroup([
+            desa,
+            kecamatan,
+            jalan,
+            cl,
+            buffer,
+            permukiman,
+            sawah,
+            permukiman_terdampak,
+            sawahTerdampak
+        ]);
+        map.fitBounds(group.getBounds());
+    }catch(e){console.log("Bounds skipped");}
+},500);
+
+
+/* CONTROL */
+/* ================= LAYER CONTROL MODERN ================= */
+
+
+L.control.layers(
+ {Satelit:satellite,OSM:osm,Carto:carto,Blank:white},
+ {
+   Orthophoto:ortho,
+   'Batas Desa':desa,
+   'Batas Kecamatan':kecamatan,
+   'Center Line':cl,
+   Jalan:jalan,
+   Buffer:buffer,
+   Permukiman:permukiman,
+   Sawah:sawah,
+   'Permukiman Terdampak':permukiman_terdampak,
+   'Sawah Terdampak':sawahTerdampak
+ },
+ {
+   collapsed:true,
+   position:'bottomright'
+ }
+).addTo(map);
+
+
+</script>
+</body>
+</html>
